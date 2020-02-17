@@ -25,6 +25,7 @@ int main()
 
 	System* mySystem = new System();
 	mySystem->RunComputation();
+	mySystem->PrintSummary();
 
 	std::cout << "Goodbye World!\n";
 	return 0;

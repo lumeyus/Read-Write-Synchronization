@@ -10,7 +10,8 @@
 #include <thread>
 #include <string>
 
-#define NUM_ROLLS 99
+constexpr int NUM_ROLLS = 25;
+constexpr int TOTAL_ROLLS = 75;
 
 class System
 {
@@ -42,6 +43,9 @@ public:
 	*/
 	void SaveData();
 
+	/* Prints summary of computation */
+	void PrintSummary();
+
 private:
 	/* Directories for reading/writing */
 	std::string input_directory;
@@ -62,4 +66,5 @@ private:
 	static int total_one;
 	static int total_two;
 	static int total_three;
+	static int total_all;
 };

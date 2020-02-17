@@ -6,10 +6,14 @@
 	Implementation file for the System class.
 */
 
+/* Helper function declaration */
 void printLine(const char* str, int n, int num);
+
+/* Static member declarations */
 int System::total_one = 0;
 int System::total_two = 0;
 int System::total_three = 0;
+int System::total_all = 0;
 
 /* Default constructor for the System class */
 System::System()
@@ -24,9 +28,11 @@ System::~System()
 /* Creator of the threads */
 void System::RunComputation()
 {
+	/* Start threads, passing worker methods as arguments */
 	std::thread t1(&System::GenerateData, this);
 	std::thread t2(&System::ComputeData, this);
 	std::thread t3(&System::SaveData, this);
+	/* Rejoin threads once computation completed */
 	t1.join();
 	t2.join();
 	t3.join();
@@ -40,6 +46,7 @@ void System::GenerateData()
 {
 	for (int i = 0; i < NUM_ROLLS; i++) {
 		total_one++;
+		total_all++;
 		printf("1 - Jellybeans Generating (%d)\n", total_one);
 	}
 	return;
@@ -53,6 +60,7 @@ void System::ComputeData()
 {
 	for (int i = 0; i < NUM_ROLLS; i++) {
 		total_two++;
+		total_all++;
 		printf("2 - Jellybeans Eating (%d)\n", total_two);
 	}
 	return;
@@ -66,7 +74,31 @@ void System::SaveData()
 {
 	for (int i = 0; i < NUM_ROLLS; i++) {
 		total_three++;
+		total_all++;
 		printf("3 - Jellybeans Disintegrating (%d)\n", total_three);
 	}
 	return;
+}
+
+void System::PrintSummary()
+{
+	if (total_one == NUM_ROLLS && total_two == NUM_ROLLS &&
+		total_three == NUM_ROLLS && total_all == TOTAL_ROLLS) {
+		printf("%d total rolls!\nEverything looks good o7\n", total_all);
+	}
+	else{
+		printf("Something went wrong!\n");
+		if (total_one != NUM_ROLLS) {
+			printf("One failed!\n");
+		}
+		else if (total_two != NUM_ROLLS) {
+			printf("Two failed!\n");
+		}
+		else if (total_three != NUM_ROLLS) {
+			printf("Three failed!\n");
+		}
+		else {
+			printf("Sum failed!\n");
+		}
+	}
 }
