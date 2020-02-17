@@ -1,5 +1,4 @@
 #include "System.h"
-
 /*
 	System.cpp - Luis Ibanez - 2/16/2020
 	------------------------------------
@@ -33,8 +32,6 @@ void System::RunComputation()
 	t1.join();
 	t2.join();
 	t3.join();
-	/* Print summary to verify results */
-	this->PrintSummary();
 }
 
 /*
@@ -43,7 +40,8 @@ void System::RunComputation()
 */
 void System::GenerateData()
 {
-	for (int i = 0; i < NUM_ROLLS; i++) {
+	for (int i = 0; i < NUM_ROLLS; i++) 
+	{
 		total_one++;
 		total_all++;
 		printf("1 - Jellybeans Generating (%d)\n", total_one);
@@ -57,7 +55,8 @@ void System::GenerateData()
 */
 void System::ComputeData()
 {
-	for (int i = 0; i < NUM_ROLLS; i++) {
+	for (int i = 0; i < NUM_ROLLS; i++) 
+	{
 		total_two++;
 		total_all++;
 		printf("2 - Jellybeans Eating (%d)\n", total_two);
@@ -71,7 +70,8 @@ void System::ComputeData()
 */
 void System::SaveData()
 {
-	for (int i = 0; i < NUM_ROLLS; i++) {
+	for (int i = 0; i < NUM_ROLLS; i++) 
+	{
 		total_three++;
 		total_all++;
 		printf("3 - Jellybeans Disintegrating (%d)\n", total_three);
@@ -82,21 +82,26 @@ void System::SaveData()
 void System::PrintSummary()
 {
 	if (total_one == NUM_ROLLS && total_two == NUM_ROLLS &&
-		total_three == NUM_ROLLS && total_all == TOTAL_ROLLS) {
+		total_three == NUM_ROLLS && total_all == TOTAL_ROLLS) 
+	{
 		printf("%d total rolls!\n%d in one, %d in two, %d in three\nEverything looks good o7\n", total_all, total_one, total_two, total_three);
 	}
 	else{
 		printf("Something went wrong!\n");
-		if (total_one != NUM_ROLLS) {
+		if (total_one != NUM_ROLLS) 
+		{
 			printf("One failed!\n");
 		}
-		else if (total_two != NUM_ROLLS) {
+		else if (total_two != NUM_ROLLS) 
+		{
 			printf("Two failed!\n");
 		}
-		else if (total_three != NUM_ROLLS) {
+		else if (total_three != NUM_ROLLS) 
+		{
 			printf("Three failed!\n");
 		}
-		else {
+		else 
+		{
 			printf("Sum failed!\n");
 		}
 	}

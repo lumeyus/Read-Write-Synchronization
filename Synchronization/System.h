@@ -1,8 +1,8 @@
 #pragma once
 /*
 	System.h - Luis Ibanez - 2/16/2020
-	------------------------------------
-	Class that contains the 3 thread parameter functions and the input/output buffers
+	----------------------------------
+	Class that contains the 3 thread parameter functions and the output buffers
 	for the read-write computation process.
 */
 
@@ -47,15 +47,8 @@ public:
 	void PrintSummary();
 
 private:
-	/* Directories for reading/writing */
-	std::string input_directory;
+	/* Directory for writing */
 	std::string output_directory;
-
-	/* Containers for each column of data contained in input_directory */
-	std::queue<double> in_column_one;
-	std::queue<double> in_column_two;
-	std::queue<double> in_column_three;
-	std::queue<double> in_column_four;
 
 	/* Containers for each column of data contained in output_directory */
 	std::queue<double> out_column_one;
