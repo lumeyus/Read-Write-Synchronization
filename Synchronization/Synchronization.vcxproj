@@ -154,9 +154,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Synchronization.cpp" />
+    <ClCompile Include="System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Resources\Input Data\input_data.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
