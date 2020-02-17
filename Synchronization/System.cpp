@@ -36,6 +36,8 @@ void System::RunComputation()
 	t1.join();
 	t2.join();
 	t3.join();
+	/* Print summary to verify results */
+	this->PrintSummary();
 }
 
 /*
