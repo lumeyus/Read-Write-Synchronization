@@ -1,6 +1,4 @@
 # Read-Write-Synchronization
-C++ implementation of reading data values from a file, processing the data, and then writing the results of processing to another file simultaneously, using std::thread and std::mutex for synchronization
-
 C++ program that reads data from a file, performs computation on that data, and writes the results into a separate output file.  Uses multithreading to improve the performance of the application.
 
 ## Purpose
