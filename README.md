@@ -1,5 +1,5 @@
 # Read-Write-Synchronization
-C++ program that reads data from a file, performs computation on that data, and writes the results into a separate output file.  Uses multithreading (with std::thread) to improve the performance of the program.
+C++ program that reads data from a file, performs computation on that data, and writes the results into a separate output file.  Uses multithreading with std::thread to improve the performance of the program.
 
 ## Purpose
 To both practice simple object-oriented multithreaded programming design and to create a modularized prototype for a simulation software. 
