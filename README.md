@@ -9,8 +9,7 @@ To both practice simple object-oriented multithreaded programming design and to 
 - 2/17 2:00 : Have created a System class that executes simultaneous counting of separate private members, along with adding to a shared sum.  Verified that sums all count to set amount.
 
 ## To-Do's
-- Design abstractions of the input/output buffers
-- Add read/write capability to the input and output worker methods
-- Modify worker methods to use input/output buffers for reading, computing, and processing
+- Design abstractions for the input/output buffers
+- Modify worker methods to use input/output buffers for reading, computing, and writing
 - Verify synchronization is correct with simple file tests
-- Create tests to verify the fully-fledged 4-column read/write program works as expected
+- Create tests to verify that the fully-fledged 4-column read/write program works as expected
