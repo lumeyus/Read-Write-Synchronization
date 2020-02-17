@@ -155,6 +155,9 @@
   <ItemGroup>
     <ClCompile Include="Synchronization.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Resources\Input Data\input_data.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

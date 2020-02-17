@@ -7,6 +7,8 @@
 		- one for reading from a file and filling up an input buffer,
 		- another for carrying out the processing of the data placed in this buffer, and filling up an output buffer with the results,
 		- and another for writing the data placed in the output buffer to a separate file
+
+	Input and output data will come in the form of comma-separated values.
 */
 
 #include <iostream>
