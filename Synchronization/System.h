@@ -10,8 +10,8 @@
 #include <thread>
 #include <string>
 
-constexpr int NUM_ROLLS = 25;
-constexpr int TOTAL_ROLLS = 75;
+constexpr int NUM_ROLLS = 333;
+constexpr int TOTAL_ROLLS = 999;
 
 class System
 {
@@ -63,6 +63,7 @@ private:
 	std::queue<double> out_column_three;
 	std::queue<double> out_column_four;
 
+	/* Totals updated by the three threads */
 	static int total_one;
 	static int total_two;
 	static int total_three;

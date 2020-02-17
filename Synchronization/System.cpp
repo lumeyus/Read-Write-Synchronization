@@ -6,10 +6,7 @@
 	Implementation file for the System class.
 */
 
-/* Helper function declaration */
-void printLine(const char* str, int n, int num);
-
-/* Static member declarations */
+/* Static member initializations */
 int System::total_one = 0;
 int System::total_two = 0;
 int System::total_three = 0;
@@ -86,7 +83,7 @@ void System::PrintSummary()
 {
 	if (total_one == NUM_ROLLS && total_two == NUM_ROLLS &&
 		total_three == NUM_ROLLS && total_all == TOTAL_ROLLS) {
-		printf("%d total rolls!\nEverything looks good o7\n", total_all);
+		printf("%d total rolls!\n%d in one, %d in two, %d in three\nEverything looks good o7\n", total_all, total_one, total_two, total_three);
 	}
 	else{
 		printf("Something went wrong!\n");
