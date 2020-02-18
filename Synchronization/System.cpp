@@ -14,11 +14,18 @@ int System::total_all = 0;
 /* Default constructor for the System class */
 System::System()
 {
+	systemData = new Data();
 }
 
 /* Deconstructor for the System class - no dynamic memory to deallocate */
 System::~System()
 {
+}
+
+System::System(std::string new_input_directory)
+{
+	systemData = new Data();
+	input_directory = new_input_directory;
 }
 
 /* Creator of the threads */
@@ -34,18 +41,11 @@ void System::RunComputation()
 	t3.join();
 }
 
-/*
-	Input thread parameter function - fills the system's input compute buffers
-	input_directory : the directory of the file containing the input data values
-*/
+/* Input thread parameter function - fills the system's input compute buffers */
 void System::GenerateData()
 {
-	for (int i = 0; i < NUM_ROLLS; i++) 
-	{
-		total_one++;
-		total_all++;
-		printf("1 - Jellybeans Generating (%d)\n", total_one);
-	}
+	Data* input_buffer = new Data();
+	input_buffer->ReadFrom(input_directory);
 	return;
 }
 
@@ -81,18 +81,14 @@ void System::SaveData()
 
 void System::PrintSummary()
 {
-	if (total_one == NUM_ROLLS && total_two == NUM_ROLLS &&
+	if (total_two == NUM_ROLLS &&
 		total_three == NUM_ROLLS && total_all == TOTAL_ROLLS) 
 	{
 		printf("%d total rolls!\n%d in one, %d in two, %d in three\nEverything looks good o7\n", total_all, total_one, total_two, total_three);
 	}
 	else{
 		printf("Something went wrong!\n");
-		if (total_one != NUM_ROLLS) 
-		{
-			printf("One failed!\n");
-		}
-		else if (total_two != NUM_ROLLS) 
+		if (total_two != NUM_ROLLS) 
 		{
 			printf("Two failed!\n");
 		}
@@ -105,4 +101,10 @@ void System::PrintSummary()
 			printf("Sum failed!\n");
 		}
 	}
+}
+
+void System::GetInputDirectory(std::string new_input_directory)
+{
+	input_directory = new_input_directory;
+	return;
 }

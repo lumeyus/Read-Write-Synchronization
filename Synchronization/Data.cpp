@@ -19,7 +19,7 @@ Data::~Data()
 	Reads file data from input_directory 
 	-- should add a check to make sure input_directory is a directory
 */
-void Data::Read()
+void Data::ReadFrom(std::string input_directory)
 {
 	std::string line;
 	std::ifstream file(input_directory);

@@ -21,7 +21,7 @@ public:
 	~Data();
 
 	/* Read input file and fill queues with information */
-	void Read();
+	void ReadFrom(std::string input_directory);
 
 private:
 	/* Containers for each column of data contained in input_directory */
@@ -32,8 +32,5 @@ private:
 
 	/* Container for input strings to be printed */
 	std::queue<std::string> string_data;
-
-	/* Directory for reading */
-	std::string input_directory;
 };
 

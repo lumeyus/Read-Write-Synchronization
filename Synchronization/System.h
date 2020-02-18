@@ -7,20 +7,26 @@
 */
 
 #include <queue>
-#include <thread>
 #include <string>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include "Data.h"
 
 constexpr int NUM_ROLLS = 333;
-constexpr int TOTAL_ROLLS = 999;
+constexpr int TOTAL_ROLLS = NUM_ROLLS * 2;
 
 class System
 {
 public:
-	/* Default constructor for the System class */
+	/* Default constructor for the System class - allocate Data */
 	System();
 	
-	/* Deconstructor for the System class - no dynamic memory to deallocate */    
+	/* Deconstructor for the System class - free Data */    
 	~System();
+
+	/* Constructor for the System class - sets input_directory */
+	System(std::string new_input_directory);
 
 	/* Creator of the threads */
 	void RunComputation();
@@ -46,8 +52,14 @@ public:
 	/* Prints summary of computation */
 	void PrintSummary();
 
+	void GetInputDirectory(std::string new_input_directory);
+
 private:
-	/* Directory for writing */
+	/* Input handler */
+	Data* systemData;
+
+	/* Directory for reading/writing */
+	std::string input_directory;
 	std::string output_directory;
 
 	/* Containers for each column of data contained in output_directory */
@@ -61,4 +73,8 @@ private:
 	static int total_two;
 	static int total_three;
 	static int total_all;
+
+	std::mutex in_mu;
+	std::condition_variable in_cv;
+	bool in_ready;
 };

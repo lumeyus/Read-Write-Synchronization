@@ -14,16 +14,14 @@
 
 #include <iostream>
 #include <string>
-#include <thread>
-#include <mutex>
-
 #include "System.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
 
-	System* mySystem = new System();
+	std::string my_input_directory = "C:\\Users\\Luis\\source\\repos\\Read-Write-Synchronization\\Synchronization\\Resources\\Input Data\\input_data.txt";
+	System* mySystem = new System(my_input_directory);
 	mySystem->RunComputation();
 	mySystem->PrintSummary();	/* Verify results */
 
