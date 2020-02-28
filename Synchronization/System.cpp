@@ -75,7 +75,7 @@ void System::ComputeData()
 		/* Lock until buffer has items */
 		while (systemData->StringDataEmpty()) systemData->getCV()->wait(ilck);
 		std::stringstream row(systemData->PopString());
-		row >> sample_time >> x_val >> y_val >> z_val;
+		row >> sample_time >> x_val >> y_val >> z_val; /* stringstream takes care of commas */
 		std::cout << sample_time << "\t" << x_val << "\t" << y_val << "\t" << z_val << std::endl;
 
 		/* Process all but end tag */
@@ -88,7 +88,7 @@ void System::ComputeData()
 			// DO PROCESSING HERE!
 		}
 
-		/* - Now have input value, need to place in Results - */
+		/* - Now have input value, need to buffer - */
 		std::unique_lock<std::mutex> olck(*systemResults->getLock());
 		systemResults->PushString(sample_time);
 		systemResults->getCV()->notify_all();
