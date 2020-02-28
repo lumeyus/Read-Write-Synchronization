@@ -76,4 +76,10 @@ private:
 
 	std::string input_directory;
 	std::string output_directory;
+
+	/* Totals updated by the three threads (old compute) */
+	static int total_one;
+	static int total_two;
+	static int total_three;
+	static int total_all;
 };

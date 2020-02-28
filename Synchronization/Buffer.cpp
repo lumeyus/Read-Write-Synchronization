@@ -54,25 +54,25 @@ void Buffer::PushColumnFour(double value)
 /**************************/
 
 /* Pops & gets next value */
-double Buffer::PopColumnOne()
+double Buffer::PopNextColumnOne()
 {
 	double value = column_one.front();
 	column_one.pop();
 	return value;
 }
-double Buffer::PopColumnTwo()
+double Buffer::PopNextColumnTwo()
 {
 	double value = column_two.front();
 	column_two.pop();
 	return value;
 }
-double Buffer::PopColumnThree()
+double Buffer::PopNextColumnThree()
 {
 	double value = column_three.front();
 	column_three.pop();
 	return value;
 }
-double Buffer::PopColumnFour()
+double Buffer::PopNextColumnFour()
 {
 	double value = column_four.front();
 	column_four.pop();
@@ -109,7 +109,7 @@ void Buffer::PushString(std::string str)
 	string_data.push(str);
 }
 
-std::string Buffer::PopString()
+std::string Buffer::PopNextString()
 {
 	std::string next = string_data.front();
 	string_data.pop();

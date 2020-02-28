@@ -31,10 +31,10 @@ public:
 	void PushColumnFour(double value);
 
 	/* Pops (and returns) the next value */
-	double PopColumnOne();
-	double PopColumnTwo();
-	double PopColumnThree();
-	double PopColumnFour();
+	double PopNextColumnOne();
+	double PopNextColumnTwo();
+	double PopNextColumnThree();
+	double PopNextColumnFour();
 
 	/* Returns state of column */
 	bool ColumnOneEmpty();
@@ -45,7 +45,7 @@ public:
 	/* Get, Push, Pop, state methods for strings */
 	std::string GetNextString();
 	void PushString(std::string str);
-	std::string PopString();
+	std::string PopNextString();
 	bool StringDataEmpty();
 
 private:

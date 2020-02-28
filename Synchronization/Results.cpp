@@ -20,14 +20,9 @@ void Results::WriteTo(std::string output_directory)
 	std::ofstream file(output_directory);
 	if (file.is_open())
 	{
-		std::string number;
-		while (number != "END!")
+		while (!this->ColumnOneEmpty())
 		{
-			std::unique_lock<std::mutex> lck(mtx);
-			while (StringDataEmpty()) cv.wait(lck);
-			number = this->PopString();
-			if (number != "END!") number.append("\n");
-			file << number;
+			file << this->PopNextString();
 		}
 		file.close();
 	}
@@ -35,14 +30,4 @@ void Results::WriteTo(std::string output_directory)
 	{
 		printf("Unable to open file\n");
 	}
-}
-
-std::mutex* Results::getLock()
-{
-	return &mtx;
-}
-
-std::condition_variable * Results::getCV()
-{
-	return &cv;
 }
