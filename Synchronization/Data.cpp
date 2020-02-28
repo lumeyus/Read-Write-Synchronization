@@ -29,9 +29,9 @@ void Data::ReadFrom(std::string input_directory)
 		{
 			std::unique_lock<std::mutex> lck(mtx);
 			this->PushString(line);
-			cv.notify_all();
+			cv.notify_all(); /* send message that buffer is available */
 		}
-		this->PushString("END!");
+		this->PushString("END! END! END! END!");
 		file.close();
 	}
 	else 

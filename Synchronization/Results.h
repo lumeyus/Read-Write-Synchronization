@@ -24,10 +24,14 @@ public:
 	/* Write queue information to output file */
 	void WriteTo(std::string output_directory);
 
+	/* Get buffer lock */
+	std::mutex* getLock();
+
+	/* Get buffer empty CV */
+	std::condition_variable* getCV();
+
 private:
 	/* Synchronization Components */
 	std::mutex mtx;
-	bool write_ready;
-	bool write_done;
 	std::condition_variable cv;
 };
