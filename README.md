@@ -11,8 +11,8 @@ To both practice simple object-oriented multithreaded programming design and to 
 - 2/28 17:00 : Completed full multithreaded I/O algorithm; currently transfers string values from one file to another
 
 ## To-Do's
-~~Design abstractions for the input/output buffers~~
-~~Modify worker methods to use input/output buffers for reading, computing, and writing~~
-~~Verify synchronization is correct with simple file tests~~
+- ~~Design abstractions for the input/output buffers~~
+- ~~Modify worker methods to use input/output buffers for reading, computing, and writing~~
+- ~~Verify synchronization is correct with simple file tests~~
 - Modify fully-functioning I/O algorithm to do computation with doubles rather than simply passing and modifying strings
 - Create tests to verify that the fully-fledged 4-column read/write program works as expected
