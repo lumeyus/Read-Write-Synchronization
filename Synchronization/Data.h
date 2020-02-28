@@ -1,36 +1,37 @@
 #pragma once
 /*
-	Data.h - Luis Ibane - 2/17/2020
-	-------------------------------
-	Class that holds input information and
-	the 
+	Data.h - 2/17/2020
+	------------------
+	Class that represents the data to be used by the main computation.
 */
 
-#include <queue>
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <mutex>
+#include <condition_variable>
+#include "Buffer.h"
 
-class Data
+class Data : public Buffer
 {
 public:
-	/* Default constructor for the Data class */
+	/* Default constructor for Data */
 	Data();
 
-	/* Deconstructor for the Data class - maybe dynamic mem to clean? */
+	/* Deconstructor for Data - no dynamic mem to dealloc */
 	~Data();
 
 	/* Read input file and fill queues with information */
 	void ReadFrom(std::string input_directory);
 
+	/* Get buffer lock */
+	std::mutex* getLock();
+
+	/* Get buffer empty CV */
+	std::condition_variable* getCV();
+
 private:
-	/* Containers for each column of data contained in input_directory */
-	std::queue<double> column_one;
-	std::queue<double> column_two;
-	std::queue<double> column_three;
-	std::queue<double> column_four;
-
-	/* Container for input strings to be printed */
-	std::queue<std::string> string_data;
+	/* Synchronization Components */
+	std::mutex mtx;
+	std::condition_variable cv;
 };
-

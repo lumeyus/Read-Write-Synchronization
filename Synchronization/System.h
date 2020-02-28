@@ -1,17 +1,19 @@
 #pragma once
 /*
-	System.h - Luis Ibanez - 2/16/2020
-	----------------------------------
-	Class that contains the 3 thread parameter functions and the output buffers
+	System.h - 2/16/2020
+	--------------------
+	Class that contains the 3 thread parameter functions used
 	for the read-write computation process.
 */
 
 #include <queue>
 #include <string>
+#include <sstream>
 #include <thread>
 #include <mutex>
 #include <condition_variable>
 #include "Data.h"
+#include "Results.h"
 
 constexpr int NUM_ROLLS = 333;
 constexpr int TOTAL_ROLLS = NUM_ROLLS * 2;
@@ -19,62 +21,65 @@ constexpr int TOTAL_ROLLS = NUM_ROLLS * 2;
 class System
 {
 public:
-	/* Default constructor for the System class - allocate Data */
+	struct InputDir final {};
+	struct OutputDir final {};
+
+	/* Default constructor for System */
 	System();
 	
-	/* Deconstructor for the System class - free Data */    
+	/* Deconstructor for System */    
 	~System();
 
-	/* Constructor for the System class - sets input_directory */
-	System(std::string new_input_directory);
+	/* Constructor for System - sets the input_directory */
+	System(InputDir, std::string directory);
 
-	/* Creator of the threads */
+	/* Constructor for System - sets the output_directory */
+	System(OutputDir, std::string directory);
+
+	/* Constructor for System - sets both directories */
+	System(std::string new_input_directory, std::string new_output_directory);
+
+	/* Handles threads */
 	void RunComputation();
 
 	/* 
-		Input thread parameter function - fills the system's input compute buffers
-		input_directory : the directory of the file containing the input data values
+		Input thread parameter function:
+		fills Data with info found in input_directory
 	*/
 	void GenerateData();
 
 	/* 
-		Computational thread parameter function - performs computation on input data values
+		Computational thread parameter function:
+		performs computation on input data values
 		Places computed into output buffers for saving
 	*/
 	void ComputeData();
 
-	/*
-		Output thread parameter function - writes to file the data from output buffers
-		output_directory : the directory that the output data values will be saved at
+	/* 
+		Output thread parameter function:
+		writes info found in Results to output_directory 
 	*/
 	void SaveData();
 
 	/* Prints summary of computation */
 	void PrintSummary();
 
-	void GetInputDirectory(std::string new_input_directory);
+	/* Sets input_directory to assigned string */
+	void SetInputDirectory(std::string new_input_directory);
+
+	/* Sets output_directory to assigned string */
+	void SetOutputDirectory(std::string new_output_directory);
 
 private:
-	/* Input handler */
-	Data* systemData;
+	Data* systemData;	/* Input handler */
+	Results* systemResults;	/* Output handler */
 
-	/* Directory for reading/writing */
 	std::string input_directory;
 	std::string output_directory;
 
-	/* Containers for each column of data contained in output_directory */
-	std::queue<double> out_column_one;
-	std::queue<double> out_column_two;
-	std::queue<double> out_column_three;
-	std::queue<double> out_column_four;
-
-	/* Totals updated by the three threads */
+	/* Totals updated by the three threads (old compute) */
 	static int total_one;
 	static int total_two;
 	static int total_three;
 	static int total_all;
-
-	std::mutex in_mu;
-	std::condition_variable in_cv;
-	bool in_ready;
 };

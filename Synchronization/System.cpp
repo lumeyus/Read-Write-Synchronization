@@ -1,7 +1,7 @@
 #include "System.h"
 /*
-	System.cpp - Luis Ibanez - 2/16/2020
-	------------------------------------
+	System.cpp - 2/16/2020
+	----------------------
 	Implementation file for the System class.
 */
 
@@ -11,21 +11,40 @@ int System::total_two = 0;
 int System::total_three = 0;
 int System::total_all = 0;
 
-/* Default constructor for the System class */
+/* Default constructor for the System class - allocate Data */
 System::System()
 {
 	systemData = new Data();
+	systemResults = new Results();
 }
 
-/* Deconstructor for the System class - no dynamic memory to deallocate */
+/* Deconstructor for the System class - free Data */
 System::~System()
 {
+	delete systemData;
+	delete systemResults;
 }
 
-System::System(std::string new_input_directory)
+System::System(InputDir, std::string directory)
 {
 	systemData = new Data();
+	systemResults = new Results();
+	input_directory = directory;
+}
+
+System::System(OutputDir, std::string directory)
+{
+	systemData = new Data();
+	systemResults = new Results();
+	output_directory = directory;
+}
+
+System::System(std::string new_input_directory, std::string new_output_directory)
+{
+	systemData = new Data();
+	systemResults = new Results();
 	input_directory = new_input_directory;
+	output_directory = new_output_directory;
 }
 
 /* Creator of the threads */
@@ -44,8 +63,7 @@ void System::RunComputation()
 /* Input thread parameter function - fills the system's input compute buffers */
 void System::GenerateData()
 {
-	Data* input_buffer = new Data();
-	input_buffer->ReadFrom(input_directory);
+	systemData->ReadFrom(input_directory);
 	return;
 }
 
@@ -55,11 +73,15 @@ void System::GenerateData()
 */
 void System::ComputeData()
 {
-	for (int i = 0; i < NUM_ROLLS; i++) 
+	std::string number;
+	while (number != "END!") 
 	{
-		total_two++;
-		total_all++;
-		printf("2 - Jellybeans Eating (%d)\n", total_two);
+		std::unique_lock<std::mutex> lck(*systemData->getLock());
+		/* Lock until buffer has items */
+		while (systemData->StringDataEmpty()) systemData->getCV()->wait(lck);
+		std::stringstream row(systemData->PopNextString());
+		row >> number;
+		std::cout << number << std::endl;
 	}
 	return;
 }
@@ -70,40 +92,18 @@ void System::ComputeData()
 */
 void System::SaveData()
 {
-	for (int i = 0; i < NUM_ROLLS; i++) 
-	{
-		total_three++;
-		total_all++;
-		printf("3 - Jellybeans Disintegrating (%d)\n", total_three);
-	}
+	systemResults->WriteTo(output_directory);
 	return;
 }
 
 void System::PrintSummary()
 {
-	if (total_two == NUM_ROLLS &&
-		total_three == NUM_ROLLS && total_all == TOTAL_ROLLS) 
-	{
-		printf("%d total rolls!\n%d in one, %d in two, %d in three\nEverything looks good o7\n", total_all, total_one, total_two, total_three);
-	}
-	else{
-		printf("Something went wrong!\n");
-		if (total_two != NUM_ROLLS) 
-		{
-			printf("Two failed!\n");
-		}
-		else if (total_three != NUM_ROLLS) 
-		{
-			printf("Three failed!\n");
-		}
-		else 
-		{
-			printf("Sum failed!\n");
-		}
-	}
+	//TODO- make this a meaningful check
+	printf("Made it to the end of the computation!\n");
+	return;
 }
 
-void System::GetInputDirectory(std::string new_input_directory)
+void System::SetInputDirectory(std::string new_input_directory)
 {
 	input_directory = new_input_directory;
 	return;
