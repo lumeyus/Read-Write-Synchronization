@@ -5,12 +5,6 @@
 	Implementation file for the System class.
 */
 
-/* Static member initializations */
-int System::total_one = 0;
-int System::total_two = 0;
-int System::total_three = 0;
-int System::total_all = 0;
-
 /* Default constructor for the System class - allocate Data */
 System::System()
 {
@@ -73,15 +67,31 @@ void System::GenerateData()
 */
 void System::ComputeData()
 {
-	std::string number;
-	while (number != "END!") 
+	std::string sample_time, x_val, y_val, z_val;
+	while (sample_time != "END!") 
 	{
-		std::unique_lock<std::mutex> lck(*systemData->getLock());
+		/* - Getting input value - */
+		std::unique_lock<std::mutex> ilck(*systemData->getLock());
 		/* Lock until buffer has items */
-		while (systemData->StringDataEmpty()) systemData->getCV()->wait(lck);
-		std::stringstream row(systemData->PopNextString());
-		row >> number;
-		std::cout << number << std::endl;
+		while (systemData->StringDataEmpty()) systemData->getCV()->wait(ilck);
+		std::stringstream row(systemData->PopString());
+		row >> sample_time >> x_val >> y_val >> z_val;
+		std::cout << sample_time << "\t" << x_val << "\t" << y_val << "\t" << z_val << std::endl;
+
+		/* Process all but end tag */
+		if (sample_time != "END!")
+		{
+			sample_time.append("-PROCESSED!");
+		}
+		else
+		{
+			// DO PROCESSING HERE!
+		}
+
+		/* - Now have input value, need to place in Results - */
+		std::unique_lock<std::mutex> olck(*systemResults->getLock());
+		systemResults->PushString(sample_time);
+		systemResults->getCV()->notify_all();
 	}
 	return;
 }
