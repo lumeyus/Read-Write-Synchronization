@@ -1,14 +1,14 @@
 # Read-Write-Synchronization
 C++ program that reads data from a file, performs computation on that data, and writes the results into a separate output file.  Uses multithreading with std::thread to improve the performance of the program.
 
-## Purpose
-To both practice simple object-oriented multithreaded programming design and to create a modularized prototype for a simulation software. 
+# Purpose
+To both practice simple object-oriented multithreaded programming design and to create a modularized prototype for software. 
 
-## Progress
-- 2/16 19:30 : Project created
-- 2/17 2:00 : Have created a System class that executes simultaneous counting of separate private members, along with adding to a shared sum.  Verified that sums all count to set amount.
-- Some time before 2/28 : Designed and implemented abstractions for input/output buffers
-- 2/28 17:00 : Completed full multithreaded I/O algorithm; currently transfers string values from one file to another
+# Progress
+- 2/16 : Project created
+- 2/17 : Have created a System class that executes simultaneous counting of separate private members, along with adding to a shared sum.  Verified that sums all count to set amount.
+- 2/23 : Designed and implemented abstractions for input/output buffers
+- 2/28 : Completed full multithreaded I/O algorithm; currently transfers string values from one file to another
 
 ## To-Do's
 - ~~Design abstractions for the input/output buffers~~
