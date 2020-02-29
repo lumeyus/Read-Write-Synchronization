@@ -26,11 +26,11 @@ int main()
 	// Will fix in future
 
 	// ON DESKTOP
-	//std::string my_input_directory = "C:\\Users\\Luis\\source\\repos\\Read-Write-Synchronization\\Synchronization\\Resources\\Input Data\\input_data.txt";
-	//std::string my_output_directory = "C:\\Users\\Luis\\source\\repos\\Read-Write-Synchronization\\Synchronization\\Resources\\Output Data\\input_data.txt";
+	std::string my_input_directory = "C:\\Users\\Luis\\source\\repos\\Read-Write-Synchronization\\Synchronization\\Resources\\Input Data\\input_data.txt";
+	std::string my_output_directory = "C:\\Users\\Luis\\source\\repos\\Read-Write-Synchronization\\Synchronization\\Resources\\Output Data\\output_data.txt";
 	// ON LAPTOP
-	std::string my_input_directory = "C:\\Users\\Luis\\source\\repos\\lumeyus\\Read-Write-Synchronization\\Synchronization\\Resources\\Input Data\\input_data.txt";
-	std::string my_output_directory = "C:\\Users\\Luis\\source\\repos\\lumeyus\\Read-Write-Synchronization\\Synchronization\\Resources\\Output Data\\output_data.txt";
+	//std::string my_input_directory = "C:\\Users\\Luis\\source\\repos\\lumeyus\\Read-Write-Synchronization\\Synchronization\\Resources\\Input Data\\input_data.txt";
+	//std::string my_output_directory = "C:\\Users\\Luis\\source\\repos\\lumeyus\\Read-Write-Synchronization\\Synchronization\\Resources\\Output Data\\output_data.txt";
 
 	System* mySystem = new System(my_input_directory, my_output_directory);
 	mySystem->RunComputation();

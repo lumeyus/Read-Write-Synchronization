@@ -25,7 +25,7 @@ public:
 	void ReadFrom(std::string input_directory);
 
 	/* Get buffer lock */
-	std::mutex* getLock();
+	std::mutex* getMutex();
 
 	/* Get buffer empty CV */
 	std::condition_variable* getCV();

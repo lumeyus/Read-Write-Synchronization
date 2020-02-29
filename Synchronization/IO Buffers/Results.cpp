@@ -15,6 +15,10 @@ Results::~Results()
 {
 }
 
+/*
+	Writes computation results to output_directory
+	-- should add a check to make sure output_directory is realistic
+*/
 void Results::WriteTo(std::string output_directory)
 {
 	std::ofstream file(output_directory);
@@ -37,11 +41,13 @@ void Results::WriteTo(std::string output_directory)
 	}
 }
 
-std::mutex* Results::getLock()
+/* Gets mutex for locking */
+std::mutex* Results::getMutex()
 {
 	return &mtx;
 }
 
+/* Gets condition variable for signal sending / reading */
 std::condition_variable * Results::getCV()
 {
 	return &cv;

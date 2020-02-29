@@ -71,7 +71,7 @@ void System::ComputeData()
 	while (sample_time != "END!") 
 	{
 		/* - Getting input value - */
-		std::unique_lock<std::mutex> ilck(*systemData->getLock());
+		std::unique_lock<std::mutex> ilck(*systemData->getMutex());
 		/* Lock until buffer has items */
 		while (systemData->StringDataEmpty()) systemData->getCV()->wait(ilck);
 		std::stringstream row(systemData->PopString());
@@ -89,7 +89,7 @@ void System::ComputeData()
 		}
 
 		/* - Now have input value, need to buffer - */
-		std::unique_lock<std::mutex> olck(*systemResults->getLock());
+		std::unique_lock<std::mutex> olck(*systemResults->getMutex());
 		systemResults->PushString(sample_time);
 		systemResults->getCV()->notify_all();
 	}

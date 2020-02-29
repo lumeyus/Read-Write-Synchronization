@@ -45,11 +45,13 @@ void Data::ReadFrom(std::string input_directory)
 	}
 }
 
-std::mutex* Data::getLock()
+/* Gets mutex for locking */
+std::mutex* Data::getMutex()
 {
 	return &mtx;
 }
 
+/* Gets condition variable for signal sending / reading */
 std::condition_variable * Data::getCV()
 {
 	return &cv;

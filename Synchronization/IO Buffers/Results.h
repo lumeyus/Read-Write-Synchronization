@@ -25,7 +25,7 @@ public:
 	void WriteTo(std::string output_directory);
 
 	/* Get buffer lock */
-	std::mutex* getLock();
+	std::mutex* getMutex();
 
 	/* Get buffer empty CV */
 	std::condition_variable* getCV();

@@ -38,19 +38,22 @@
     <Text Include="Resources\Input Data\input_data.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="Resources\Output Data\output_data.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IO Buffers\Data.h">
-      <Filter>Source Files\IO Buffers</Filter>
-    </ClInclude>
     <ClInclude Include="IO Buffers\Results.h">
-      <Filter>Source Files\IO Buffers</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IO Buffers\Data.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IO Buffers\Buffer.h">
-      <Filter>Source Files\IO Buffers</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

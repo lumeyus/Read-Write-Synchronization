@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Resources\Input Data\input_data.txt" />
+    <Text Include="Resources\Output Data\output_data.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IO Buffers\Buffer.h" />
