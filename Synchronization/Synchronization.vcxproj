@@ -153,20 +153,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Buffer.cpp" />
-    <ClCompile Include="Data.cpp" />
-    <ClCompile Include="Results.cpp" />
+    <ClCompile Include="IO Buffers\Buffer.cpp" />
+    <ClCompile Include="IO Buffers\Data.cpp" />
+    <ClCompile Include="IO Buffers\Results.cpp" />
     <ClCompile Include="Synchronization.cpp" />
     <ClCompile Include="System.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Resources\Input Data\input_data.txt" />
-    <Text Include="Resources\Output Data\output_data.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Buffer.h" />
-    <ClInclude Include="Data.h" />
-    <ClInclude Include="Results.h" />
+    <ClInclude Include="IO Buffers\Buffer.h" />
+    <ClInclude Include="IO Buffers\Data.h" />
+    <ClInclude Include="IO Buffers\Results.h" />
     <ClInclude Include="System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

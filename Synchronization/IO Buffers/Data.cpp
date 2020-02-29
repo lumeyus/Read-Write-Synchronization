@@ -31,12 +31,17 @@ void Data::ReadFrom(std::string input_directory)
 			this->PushString(line);
 			cv.notify_all(); /* send message that buffer is available */
 		}
+		std::unique_lock<std::mutex> lck(mtx);
 		this->PushString("END! END! END! END!");
+		cv.notify_all(); /* send message that buffer is available */
 		file.close();
 	}
 	else 
 	{
 		printf("Unable to open file\n");
+		std::unique_lock<std::mutex> lck(mtx);
+		this->PushString("END!");
+		cv.notify_all(); /* send message that buffer is available */
 	}
 }
 

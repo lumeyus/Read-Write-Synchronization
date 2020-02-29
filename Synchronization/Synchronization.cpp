@@ -10,6 +10,8 @@
 		- and another for writing the data placed in the output buffer to a separate file
 
 	Input and output data will come in the form of comma-separated values.
+
+	BUG: No/incorrect input file leads to deadlock
 */
 
 #include <iostream>
@@ -20,8 +22,8 @@ int main()
 {
     std::cout << "Hello World!\n";
 
-	// YES I KNOW HARDCODING DIRECTORIES IS BAD
-	// WILL FIX IN FUTURE
+	// Yes I know hardcoding directories is bad (...is it?)
+	// Will fix in future
 
 	// ON DESKTOP
 	//std::string my_input_directory = "C:\\Users\\Luis\\source\\repos\\Read-Write-Synchronization\\Synchronization\\Resources\\Input Data\\input_data.txt";

@@ -2,7 +2,7 @@
 /*
 	Buffer.cpp - 2/18/2020
 	----------------------
-	Implementation file for the Buffer class.
+	Implementation file for the Buffer interface.
 */
 
 /* Default constructor for Buffer */
@@ -15,6 +15,7 @@ Buffer::~Buffer()
 {
 }
 
+/**************************/
 /* Gets value from column */
 double Buffer::GetNextColumnOne()
 {
@@ -34,6 +35,7 @@ double Buffer::GetNextColumnFour()
 }
 /**************************/
 
+/**************************/
 /* Pushes value to column */
 void Buffer::PushColumnOne(double value)
 {
@@ -53,6 +55,7 @@ void Buffer::PushColumnFour(double value)
 }
 /**************************/
 
+/**************************/
 /* Pops & gets next value */
 double Buffer::PopColumnOne()
 {
@@ -80,6 +83,7 @@ double Buffer::PopColumnFour()
 }
 /**************************/
 
+/**************************/
 /* Returns state of column */
 bool Buffer::ColumnOneEmpty()
 {
@@ -99,6 +103,8 @@ bool Buffer::ColumnFourEmpty()
 }
 /***************************/
 
+/**************************/
+/* Get, Push, Pop, state methods for strings */
 std::string Buffer::GetNextString()
 {
 	return string_data.front();
@@ -120,3 +126,4 @@ bool Buffer::StringDataEmpty()
 {
 	return string_data.empty();
 }
+/**************************/

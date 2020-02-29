@@ -4,7 +4,7 @@
 	--------------------
 	Interface for the buffers used to hold information that
 	needs to be sent between two threads. 
-	The two child classes are expected to be Data and Results.
+	The two child classes are expected to be Data (input) and Results (output).
 */
 #include <queue>
 #include <string>
@@ -49,13 +49,13 @@ public:
 	bool StringDataEmpty();
 
 private:
-	/* Columns of data that need to be sent */
+	/* Columns of data that need to be transferred */
 	std::queue<double> column_one;
 	std::queue<double> column_two;
 	std::queue<double> column_three;
 	std::queue<double> column_four;
 
-	/* Strings that need to be sent */
+	/* Strings that need to be transferred */
 	std::queue<std::string> string_data;
 };
 

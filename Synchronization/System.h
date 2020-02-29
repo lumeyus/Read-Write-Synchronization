@@ -12,11 +12,8 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
-#include "Data.h"
-#include "Results.h"
-
-constexpr int NUM_ROLLS = 333;
-constexpr int TOTAL_ROLLS = NUM_ROLLS * 2;
+#include "IO Buffers/Data.h"
+#include "IO Buffers/Results.h"
 
 class System
 {
@@ -30,10 +27,10 @@ public:
 	/* Deconstructor for System */    
 	~System();
 
-	/* Constructor for System - sets the input_directory */
+	/* Constructor for System - sets the input_directory --can remove? */
 	System(InputDir, std::string directory);
 
-	/* Constructor for System - sets the output_directory */
+	/* Constructor for System - sets the output_directory --can remove? */
 	System(OutputDir, std::string directory);
 
 	/* Constructor for System - sets both directories */
